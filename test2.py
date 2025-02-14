@@ -75,6 +75,7 @@ def check_file_type(file_input):
 
 
 #load RAG data
+dummy_data = none
 rag_file = check_file_type(RAG_PATH)
 dummy_data = rag_file 
 
