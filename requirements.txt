@@ -1,0 +1,12 @@
+streamlit
+tensorflow
+pdfplumber
+ibm-watson
+pydub
+pinecone
+python-docx
+speechrecognition
+sentence-transformers
+ibm-cloud-sdk-core
+python-dotenv
+requests
