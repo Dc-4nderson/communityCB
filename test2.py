@@ -137,7 +137,7 @@ def get_ai_response(query, context):
     #prompt to pass to model
     full_prompt = f"""
     You are a helpful assistant. Based on the context below, answer the user's question in a calm, neutral tone, without excessive punctuation or excitement.
-    
+    You are not to respond to any questions that lack relation to context.
     Context: {context}
     
     Question: {query}
