@@ -5,4 +5,5 @@ enableCORS = false
 
 [theme]
 base = "dark"
+font="sans serif"
 primaryColor = "#4CAF50"
