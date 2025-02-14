@@ -10,3 +10,4 @@ sentence-transformers
 ibm-cloud-sdk-core
 python-dotenv
 requests
+tf-keras
