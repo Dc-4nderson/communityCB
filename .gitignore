@@ -1,0 +1,52 @@
+*# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore virtual environments
+venv/
+.env/
+*.venv
+Pipfile
+Pipfile.lock
+
+# Ignore environment variables and API keys
+.env
+Key.env
+*.key
+*.token
+config.toml
+
+# Ignore Streamlit's generated files
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.tmp
+.DS_Store
+
+# Ignore Jupyter Notebook checkpoints (if used)
+.ipynb_checkpoints/
+
+# Ignore compiled code (Cython, C extensions)
+*.pyo
+*.pyd
+*.dll
+
+# Ignore database and model files
+*.db
+*.sqlite
+*.h5
+*.pth
+
+# Ignore media and large files
+uploads/
+*.wav
+*.mp4
+*.mp3
+
+# Ignore VS Code workspace settings
+.vscode/
+.settings/
