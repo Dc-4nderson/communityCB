@@ -104,7 +104,7 @@ upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert pat
 if upsert and new_file is None:
     if psw == ADMIN_PSW:
         name, records = initialize_rag(dummy_data)
-        st.success(f"Upsert successful!You upserted {records} records of (AI derived) "{name}" to db")
+        st.success(f"Upsert successful!You upserted {records} records of, "{name}" AI derived btw to your pinecone vector db")
     else:
         st.warning("Incorrect password. Access denied.")
 elif new_file and upsert:
