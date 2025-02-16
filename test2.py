@@ -13,7 +13,6 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from dotenv import load_dotenv
 import requests
 import re
-from initialize_rag import name
 
 # === Initialization ===
 
@@ -97,7 +96,9 @@ def initialize_rag(data):
         index.upsert(vectors=[(f" {name} #{i}", embeddings[i], {"text": chunk})])
         #this for admin printing
     return i+1
-
+def return_name(data):
+    intitialize_rag(data)
+    return name
 
 # Streamlit UI: Upsert Data
 rag_data = None
@@ -107,6 +108,7 @@ upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert pat
 if upsert and new_file is None:
     if psw == ADMIN_PSW:
         rag_data = initialize_rag(dummy_data)
+        name = return_name(dummy_data)
         st.success(f"Upsert successful!You upserted {rag_data} records of codename{name} to db")
     else:
         st.warning("Incorrect password. Access denied.")
@@ -115,6 +117,7 @@ elif new_file and upsert:
         dummy_data = check_file_type(new_file)
         print(dummy_data)
         rag_data = initialize_rag(dummy_data)
+        name = return_name(dummy_data)
         st.success(f"Upsert successful!You upserted {rag_data} records of codename{name} to db")
     else:
         st.warning("Incorrect password. Access denied.")
