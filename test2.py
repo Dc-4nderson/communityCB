@@ -87,7 +87,7 @@ def name_chunks(data):
     text = (data)
     output = summarizer(text, max_length=3, min_length=1, do_sample=False)
     output = output.get("summary_text")
-    return output 
+    return output[0]["summary_text"] 
 
 def initialize_rag(data):
     chunks = [data[i : i + 1000] for i in range(0, len(data), 950)]
