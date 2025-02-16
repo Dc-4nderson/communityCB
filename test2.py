@@ -106,7 +106,7 @@ upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert pat
 if upsert and new_file is None:
     if psw == ADMIN_PSW:
         rag_data = initialize_rag(dummy_data)
-        st.success(f"Upsert successful!You upserted {rag_data} records to db")
+        st.success(f"Upsert successful!You upserted {rag_data} records of codename{name} to db")
     else:
         st.warning("Incorrect password. Access denied.")
 elif new_file and upsert:
