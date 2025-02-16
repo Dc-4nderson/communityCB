@@ -113,7 +113,7 @@ elif new_file and upsert:
         print(dummy_data)
         rag_data = initialize_rag(dummy_data)
         name = return_name(dummy_data)
-        st.success(f"Upsert successful!You upserted {rag_data} records of codename{name} to db")
+        st.success(f"Upsert successful!You upserted {rag_data} records of {name} to pc vector db this name is from AI btw")
     else:
         st.warning("Incorrect password. Access denied.")
 
