@@ -114,7 +114,7 @@ elif new_file and upsert:
         dummy_data = check_file_type(new_file)
         print(dummy_data)
         rag_data = initialize_rag(dummy_data)
-        st.success(f"Upsert successful!You upserted {rag_data} records to db")
+        st.success(f"Upsert successful!You upserted {rag_data} records of codename{name} to db")
     else:
         st.warning("Incorrect password. Access denied.")
 
