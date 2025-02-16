@@ -7,6 +7,7 @@ import pydub
 import speech_recognition as sr
 from io import BytesIO
 from sentence_transformers import SentenceTransformer
+from transformers import pipeline
 from ibm_watson import SpeechToTextV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from dotenv import load_dotenv
@@ -81,12 +82,18 @@ dummy_data = None
 
 
 # === RAG Initialization ===
+def name_chunks(data):
+    summarizer = pipeline("summarization", model="t5-small")
+    text = (data)
+    output = summarizer(text, max_length=1, do_sample=False)
+    return output 
+
 def initialize_rag(data):
     chunks = [data[i : i + 1000] for i in range(0, len(data), 950)]
     embeddings = embedding_model.encode(chunks).tolist()
-
+    name = name_chunks(chunks)
     for i, chunk in enumerate(chunks):
-        index.upsert(vectors=[(f" new testdata #{i}", embeddings[i], {"text": chunk})])
+        index.upsert(vectors=[(f" {name} #{i}", embeddings[i], {"text": chunk})])
         #this for admin printing
     return i+1
 
