@@ -85,7 +85,7 @@ dummy_data = None
 def name_chunks(data):
     summarizer = pipeline("summarization", model="t5-small")
     text = (data)
-    output = summarizer(text, max_length=1, do_sample=False)
+    output = summarizer(text, max_length=3, min_length=1, do_sample=False)
     return output 
 
 def initialize_rag(data):
