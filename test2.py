@@ -101,19 +101,11 @@ rag_data = None
 psw = st.text_input("Enter Admin Password:", type="password")
 upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert path",type= '.pdf')
 
-if upsert and new_file is None:
-    if psw == ADMIN_PSW:
-        name, records = initialize_rag(dummy_data)
-        st.success(f"Upsert successful!You upserted {records} records of {name} AI derived btw to your pinecone vector db")
-    else:
-        st.warning("Incorrect password. Access denied.")
-elif new_file and upsert:
+if new_file and upsert:
     if psw == ADMIN_PSW:
         dummy_data = check_file_type(new_file)
-        print(dummy_data)
-        rag_data = initialize_rag(dummy_data)
-        name = return_name(dummy_data)
-        st.success(f"Upsert successful!You upserted {rag_data} records of {name} to pc vector db this name is from AI btw")
+        name, records = initialize_rag(dummy_data)
+        st.success(f"Upsert successful!You upserted {records} records of {name} AI derived btw to your pinecone vector db")
     else:
         st.warning("Incorrect password. Access denied.")
 
