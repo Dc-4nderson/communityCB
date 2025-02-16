@@ -95,11 +95,7 @@ def initialize_rag(data):
     for i, chunk in enumerate(chunks):
         index.upsert(vectors=[(f" {name} #{i}", embeddings[i], {"text": chunk})])
         #this for admin printing
-    return i+1
-def return_name(data):
-    intitialize_rag(data)
-    return name
-
+    return name, i+1
 # Streamlit UI: Upsert Data
 rag_data = None
 psw = st.text_input("Enter Admin Password:", type="password")
@@ -107,9 +103,8 @@ upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert pat
 
 if upsert and new_file is None:
     if psw == ADMIN_PSW:
-        rag_data = initialize_rag(dummy_data)
-        name = return_name(dummy_data)
-        st.success(f"Upsert successful!You upserted {rag_data} records of codename{name} to db")
+        name, records = initialize_rag(dummy_data)
+        st.success(f"Upsert successful!You upserted {records} records of (AI derived) "{name}" to db")
     else:
         st.warning("Incorrect password. Access denied.")
 elif new_file and upsert:
