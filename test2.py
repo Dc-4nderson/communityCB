@@ -105,7 +105,7 @@ if new_file and upsert:
     if psw == ADMIN_PSW:
         dummy_data = check_file_type(new_file)
         name, records = initialize_rag(dummy_data)
-        st.success(f"Upsert successful!You upserted {records} records of {name} AI derived btw to your pinecone vector db")
+        st.success(f"Upsert successful!You upserted {records} records of, {name} this name was AI generated btw, to your pinecone vector db")
     else:
         st.warning("Incorrect password. Access denied.")
 
