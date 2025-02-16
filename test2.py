@@ -13,6 +13,7 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from dotenv import load_dotenv
 import requests
 import re
+from initialize_rag import name
 
 # === Initialization ===
 
