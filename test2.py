@@ -100,6 +100,7 @@ def initialize_rag(data):
 rag_data = None
 psw = st.text_input("Enter Admin Password:", type="password")
 upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert path",type= '.pdf')
+dummy_data = None
 name, records = initialize_rag(dummy_data)
 
 if new_file and upsert:
