@@ -85,7 +85,7 @@ dummy_data = None
 def name_chunks(data):
     summarizer = pipeline("summarization", model="t5-small")
     text = (data)
-    output = summarizer(text, max_length=3, min_length=1, do_sample=False)
+    output = summarizer(text, max_length=4, min_length=1, do_sample=False)
     return output[0]["summary_text"] 
 
 def initialize_rag(data):
@@ -104,9 +104,9 @@ upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert pat
 if new_file and upsert:
     dummy_data = check_file_type(new_file)
     name, records = initialize_rag(dummy_data)
-    if psw == ADMIN_PSW and records > 1:
+    if psw == ADMIN_PSW and records < 1:
         st.success(f"Upsert successful!You upserted {records} record of, {name} this name was AI generated btw, to your pinecone vector db")
-    elif psw == ADMIN_PSW and records < 1:
+    elif psw == ADMIN_PSW and records > 1:
         st.success(f"Upsert successful!You upserted {records} records of, {name} this name was AI generated btw, to your pinecone vector db")
     else:
         st.warning("Incorrect password. Access denied.")
