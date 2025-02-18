@@ -181,7 +181,7 @@ def get_ai_response(query, context):
         st.error(f"API Error: {response.status_code} - {response.text}")
         return "Error: API request failed."
 
-    except requests.exceptions.RequestException as e:
+except requests.exceptions.RequestException as e:
 st.error(f"Network Error: {e}")
 return "Error: Failed to connect to API."
 
