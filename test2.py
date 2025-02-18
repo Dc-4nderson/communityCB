@@ -171,11 +171,10 @@ def get_ai_response(query, context):
 
         #extract the answer using re
         answer_start = ai_response.rfind("Answer:")
-            if answer_start != -1:
-                answer = ai_response[answer_start + len("Answer:") :].strip()
-            else:
-                answer = "Error: Could not extract answer."
-
+        if answer_start != -1:
+            answer = ai_response[answer_start + len("Answer:") :].strip()
+        else:
+            answer = "Error: Could not extract answer."
             return answer
 
         else:
