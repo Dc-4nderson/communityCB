@@ -183,8 +183,8 @@ def get_ai_response(query, context):
             return "Error: API request failed."
 
     except requests.exceptions.RequestException as e:
-        st.error(f"Network Error: {e}")
-        return "Error: Failed to connect to API."
+st.error(f"Network Error: {e}")
+return "Error: Failed to connect to API."
 
         #streamlit UI
         st.subheader("AI Response:")
