@@ -161,12 +161,7 @@ def get_ai_response(query, context):
 
     if response.status_code == 200:
         #whole answer with context and question
-        try:
-                ai_response = response.json()[0]["generated_text"]
-        except (KeyError, IndexError, TypeError):
-                st.error("Unexpected response format from API.")
-                return "Error: Could not retrieve valid AI response."
-
+        ai_response = response.json()[0]["generated_text"]
         print("Full AI Response:", ai_response)
 
         #extract the answer using re
@@ -175,7 +170,8 @@ def get_ai_response(query, context):
             answer = answer_match.group(1).strip()
         else:
             answer_start = ai_response.find("Answer:")
-            answer = ai_response[answer_start + len("Answer:") :].strip() if answer_start != -1 else "Error: Could not extract answer." 
+            answer = ai_response[answer_start + len("Answer:") :].strip() if answer_start != -1 else "Error: Could not extract answer."
+            
 # === User Input Handling ===
 st.header("Type a Question")
 
