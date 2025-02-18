@@ -169,23 +169,13 @@ def get_ai_response(query, context):
 
         print("Full AI Response:", ai_response)
 
-            # Extract answer from "Answer:" onwards
-        answer_start = ai_response.rfind("Answer:")
-        if answer_start != -1:
-            answer = ai_response[answer_start + len("Answer:") :].strip()
+        #extract the answer using re
+        answer_match = re.search(r"Answer:\s*(.*)", ai_response, re.DOTALL)
+        if answer_match:
+            answer = answer_match.group(1).strip()
         else:
-            answer = "Error: Could not extract answer."
-
-            return answer
-        else:
-            st.error(f"API Error: {response.status_code} - {response.text}")
-            return "Error: API request failed."
-except requests.exceptions.RequestException as e:
-st.error(f"Network Error: {e}")
-return "Error: Failed to connect to API."
-
-
-  
+            answer_start = ai_response.find("Answer:")
+            answer = ai_response[answer_start + len("Answer:") :].strip() if answer_start != -1 else "Error: Could not extract answer." 
 # === User Input Handling ===
 st.header("Type a Question")
 
