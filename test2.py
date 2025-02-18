@@ -171,6 +171,7 @@ def get_ai_response(query, context):
         else:
             answer_start = ai_response.find("Answer:")
             answer = ai_response[answer_start + len("Answer:") :].strip() if answer_start != -1 else "Error: Could not extract answer."
+            return answer
             
 # === User Input Handling ===
 st.header("Type a Question")
