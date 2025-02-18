@@ -170,21 +170,19 @@ def get_ai_response(query, context):
         print("Full AI Response:", ai_response)
 
             # Extract answer from "Answer:" onwards
-            answer_start = ai_response.rfind("Answer:")
-            if answer_start != -1:
-                answer = ai_response[answer_start + len("Answer:") :].strip()
-            else:
-                answer = "Error: Could not extract answer."
+        answer_start = ai_response.rfind("Answer:")
+        if answer_start != -1:
+            answer = ai_response[answer_start + len("Answer:") :].strip()
+        else:
+            answer = "Error: Could not extract answer."
 
             return answer
-
         else:
             st.error(f"API Error: {response.status_code} - {response.text}")
             return "Error: API request failed."
-
-    except requests.exceptions.RequestException as e:
-        st.error(f"Network Error: {e}")
-        return "Error: Failed to connect to API."
+except requests.exceptions.RequestException as e:
+st.error(f"Network Error: {e}")
+return "Error: Failed to connect to API."
 
 
   
