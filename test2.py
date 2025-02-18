@@ -106,7 +106,7 @@ if new_file and upsert:
     name, records = initialize_rag(dummy_data)
     if psw == ADMIN_PSW and records < 1:
         st.success(f"Upsert successful!You upserted {records} record of, {name} this name was AI generated btw, to your pinecone vector db")
-    elif psw == ADMIN_PSW and records > 1:
+    elif psw == ADMIN_PSW:
         st.success(f"Upsert successful!You upserted {records} records of, {name} this name was AI generated btw, to your pinecone vector db")
     elif psw != ADMIN_PSW:
         st.warning("Incorrect password. Access denied.")
