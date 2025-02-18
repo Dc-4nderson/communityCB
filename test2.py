@@ -177,10 +177,7 @@ def get_ai_response(query, context):
             answer = "Error: Could not extract answer."
             return answer
 
-    else:
-        st.error(f"API Error: {response.status_code} - {response.text}")
-        return "Error: API request failed."
-
+  
 # === User Input Handling ===
 st.header("Type a Question")
 
