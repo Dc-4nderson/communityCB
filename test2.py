@@ -161,7 +161,12 @@ def get_ai_response(query, context):
 
     if response.status_code == 200:
         #whole answer with context and question
-        ai_response = response.json()[0]["generated_text"]
+        try:
+                ai_response = response.json()[0]["generated_text"]
+        except (KeyError, IndexError, TypeError):
+                st.error("Unexpected response format from API.")
+                return "Error: Could not retrieve valid AI response."
+
         print("Full AI Response:", ai_response)
 
         #extract the answer using re
