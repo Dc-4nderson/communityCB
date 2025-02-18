@@ -181,18 +181,6 @@ def get_ai_response(query, context):
         st.error(f"API Error: {response.status_code} - {response.text}")
         return "Error: API request failed."
 
-except requests.exceptions.RequestException as e:
-st.error(f"Network Error: {e}")
-return "Error: Failed to connect to API."
-
-        #streamlit UI
-        st.subheader("AI Response:")
-        return answer
-    else:
-        st.error(f"Error generating response: {response.text}")
-        return None
-
-
 # === User Input Handling ===
 st.header("Type a Question")
 
