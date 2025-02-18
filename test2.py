@@ -137,7 +137,7 @@ def get_ai_response(query, context):
     #prompt to pass to model
     full_prompt = f"""
      You are a helpful assistant. Based on the context, answer the user's question in a calm, neutral tone, without excessive punctuation or excitement.
-    If you get context that does not fit the question, give a disclaimer: **"The context retrieved does not fit the question asked."** before answering.
+    If you get context that does not fit the question,before answering give a disclaimer: **"The context retrieved does not fit the question asked."** 
     If no context is retrieved, respond with: "I don't have the required context to answer this."  
     Context: {context}
     
