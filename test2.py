@@ -143,8 +143,9 @@ def get_ai_response(query, context):
     #prompt to pass to model
     full_prompt = f"""
     You are a helpful assistant. Answer the user's question in a neutral tone.
-    THE FOLLOWING IS URGENT If no context is available, or retrieved context does not fit the question say:
+    THE FOLLOWING IS URGENT If no context is available, or retrieved context does not fit the question say this and only this:
     "I don't have the required context to answer this."
+    THE FOLLOWING IS ALSO URGENT after you initially answer the question do not add extra question and answer choices or explainations
     Context: {context}
     
     Question: {query}?
