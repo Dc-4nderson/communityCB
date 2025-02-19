@@ -119,7 +119,7 @@ if new_file and upsert:
 
 
 # === Search Relevant Chunks ===
-def search_relevant_chunks(query, top_k=2):
+def search_relevant_chunks(query, top_k=5):
     #sanity checks
     if index is None:
         raise ValueError("Pinecone index is not initialized.")
