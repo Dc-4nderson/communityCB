@@ -110,7 +110,7 @@ upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert pat
 if new_file and upsert:
     dummy_data = check_file_type(new_file)
     name, records = get_name(dummy_data)
-    if psw == ADMIN_PSW and records < 1:
+    if psw == ADMIN_PSW and records > 1:
         st.success(f"Upsert successful!You upserted {records} record of, {name} this name was AI generated btw, to your pinecone vector db")
     elif psw == ADMIN_PSW:
         st.success(f"Upsert successful!You upserted {records} records of, {name} this name was AI generated btw, to your pinecone vector db")
@@ -119,7 +119,7 @@ if new_file and upsert:
 
 
 # === Search Relevant Chunks ===
-def search_relevant_chunks(query, top_k=3):
+def search_relevant_chunks(query, top_k=2):
     #sanity checks
     if index is None:
         raise ValueError("Pinecone index is not initialized.")
