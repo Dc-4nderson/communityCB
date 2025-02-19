@@ -137,7 +137,6 @@ def get_ai_response(query, context):
     #prompt to pass to model
     full_prompt = f"""
     You are a helpful assistant. Answer the user's question in a neutral tone.
-    ---
     If the retrieved context does not fit the question, respond with:
     **"The context retrieved does not fit the question asked."**
     If no context is available, say:
