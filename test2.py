@@ -162,7 +162,7 @@ def get_ai_response(query, context):
         json={
             "inputs": full_prompt,
             "parameters": {
-                "max_new_tokens": 300,
+                "max_new_tokens": 150,
                 "temperature": 0.5,
             },
         },
