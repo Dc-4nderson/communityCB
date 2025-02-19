@@ -140,12 +140,10 @@ def get_ai_response(query, context):
     ---
     If the retrieved context does not fit the question, respond with:
     **"The context retrieved does not fit the question asked."**
-    ---
     If no context is available, say:
     "I don't have the required context to answer this."
-    ---
     Context: {context}
-    ---
+    
     Question: {query}
     
     If the question contains multiple entities (e.g., "Jayden and Josiah"), 
