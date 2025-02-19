@@ -149,7 +149,7 @@ def get_ai_response(query, context):
     Context: {context}
     
     Question: {query}?
-    ---
+    
 
     Answer:
     """
