@@ -150,9 +150,6 @@ def get_ai_response(query, context):
     Context: {context}
     
     Question: {query}
-    
-    If the question contains multiple entities (e.g., "Jayden and Josiah"), 
-    check if the context contains information on both. If so, provide their details together.
     ---
 
     Answer:
