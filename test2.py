@@ -163,7 +163,7 @@ def get_ai_response(query, context):
             "inputs": full_prompt,
             "parameters": {
                 "max_new_tokens": 150,
-                "temperature": 0.5,
+                "temperature": 0.2,
             },
         },
     )
