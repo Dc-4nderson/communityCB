@@ -145,13 +145,11 @@ def get_ai_response(query, context):
     You are a helpful assistant. Answer the user's question in a neutral tone.
     THE FOLLOWING IS URGENT If no context is available, or retrieved context does not fit the question say this and only this:
     "I don't have the required context to answer this."
-    THE FOLLOWING IS ALSO URGENT after you initially answer the question do not add extra question and answer choices or explainations
+    THE FOLLOWING IS ALSO URGENT after you generate an answer do not add extra anything extra (ex: Context:Dequan is smart Question:Is dequan 21 
+    Answer:I don't have the required context to answer this.) 
     Context: {context}
     
     Question: {query}?
-    
-    ---
-    URGENT after "Answer" only return the answer no context or extra questions and answers should be given 
     ---
     Answer:
     """
