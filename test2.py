@@ -143,14 +143,18 @@ def get_ai_response(query, context):
     #prompt to pass to model
     full_prompt = f"""
     You are a helpful assistant. Answer the user's question in a neutral tone.
-    THE FOLLOWING IS URGENT If no context is available, or retrieved context does not fit the question say this and only this:
-    "I don't have the required context to answer this."
-    THE FOLLOWING IS ALSO URGENT after you generate an answer do not add extra anything extra (ex: Context:Dequan is smart Question:Is dequan 21 
-    Answer:I don't have the required context to answer this.) 
-    Context: {context}
     
-    Question: {query}?
-    ---
+    IMPORTANT:
+    - If no context is available or if the retrieved context does not fit the question, respond with exactly this: 
+    "I don't have the required context to answer this."
+    - Do not include any other information, explanations, or context after the answer. 
+    - Answer only the question based on the provided context.
+    
+    Context:
+    {context}
+    
+    Question: {query}
+    
     Answer:
     """
 
