@@ -151,7 +151,7 @@ def get_ai_response(query, context):
     Question: {query}?
     
     ---
-    here only return the answer no explaination or context should be given/ is needed
+    URGENT after "Answer" only return the answer no context or extra questions and answers should be given 
     Answer:
     """
 
