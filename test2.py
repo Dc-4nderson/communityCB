@@ -136,15 +136,7 @@ def initialize_rag(data):
     
     # Upsert chunks into Pinecone with order and name metadata
     for i, chunk in enumerate(chunks):
-        index.upsert(vectors=[(
-            f"{name} #{i}", 
-            embeddings[i], 
-            {
-                "text": chunk, 
-                "order": i, 
-                "name": name
-            }
-        )])
+        index.upsert(vectors=[(f"{name} #{i}",embeddings[i], {"text": chunk})])
     return name, i+1
 
 # Streamlit UI: Upsert Data
