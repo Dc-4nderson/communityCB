@@ -147,8 +147,8 @@ def get_ai_response(query, context):
     IMPORTANT:
     - If no context is available , respond with exactly this: 
     "I don't have the required context to answer this."
-    -If the retrieved context does not fit the question, give this exact disclaimer before generating answer:
-    "I don't have enough context to answer this but im assuming."
+    -If the retrieved context does not fit the question, give this exact disclaimer(after doing this try to answer the question):
+    "I don't have enough context to answer this but im assuming:"
     - Do not include any other information, explanations, or context after the answer. 
     - Answer only the question based on the provided context.
     
