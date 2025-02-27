@@ -87,13 +87,65 @@ def name_chunks(data):
     text = (data)
     output = summarizer(text, max_length=4, min_length=1, do_sample=False)
     return output[0]["summary_text"] 
+    
+def split_into_semantic_chunks(text, max_tokens=1300, overlap=200):
+    """
+    Splits text into chunks based on semantic boundaries (paragraphs)
+    with a sliding window for overlapping context.
+    """
+    paragraphs = text.split("\n\n")  # Split by paragraphs
+    chunks = []
+    current_chunk = []
+
+    for paragraph in paragraphs:
+        tokens = embedding_model(paragraph, return_tensors='pt', truncation=False)['input_ids'][0]
+        token_count = len(tokens)
+
+        # Check if adding this paragraph exceeds the max token limit
+        if sum(len(tokenizer(p, return_tensors='pt')['input_ids'][0]) for p in current_chunk) + token_count > max_tokens:
+            chunks.append("\n\n".join(current_chunk))
+            current_chunk = [paragraph]
+        else:
+            current_chunk.append(paragraph)
+
+    # Append the last chunk
+    if current_chunk:
+        chunks.append("\n\n".join(current_chunk))
+
+    # Sliding window to create overlaps
+    sliding_chunks = []
+    for i in range(0, len(chunks), 1):  # Iterate by 1 to overlap all
+        combined = " ".join(chunks[max(0, i-1):i+1])  # Combine current and previous
+        sliding_chunks.append(combined)
+
+    return sliding_chunks
 
 def initialize_rag(data):
-    chunks = [data[i : i + 500] for i in range(0, len(data), 450)]
+    """
+    Initializes the RAG system by chunking the data, encoding it,
+    and upserting it into the Pinecone index.
+    """
+    # Apply semantic chunking with sliding window
+    chunks = split_into_semantic_chunks(data)
+    
+    # Encode chunks into embeddings
     embeddings = embedding_model.encode(chunks).tolist()
+    
+    # Name the chunks
     name = name_chunks(chunks)
+    
+    # Upsert chunks into Pinecone with order and name metadata
     for i, chunk in enumerate(chunks):
-        index.upsert(vectors=[(f" {name} #{i}", embeddings[i], {"text": chunk})])
+        index.upsert(vectors=[(
+            f"{name} #{i}", 
+            embeddings[i], 
+            {
+                "text": chunk, 
+                "order": i, 
+                "name": name
+            }
+        )])
+
 def get_name(data):
     chunks = [data[i : i + 1250] for i in range(0, len(data), 1200)]
     embeddings = embedding_model.encode(chunks).tolist()
