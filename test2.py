@@ -95,7 +95,7 @@ def initialize_rag(data):
     for i, chunk in enumerate(chunks):
         index.upsert(vectors=[(f" {name} #{i}", embeddings[i], {"text": chunk})])
 def get_name(data):
-    chunks = [data[i : i + 500] for i in range(0, len(data), 450)]
+    chunks = [data[i : i + 750] for i in range(0, len(data), 700)]
     embeddings = embedding_model.encode(chunks).tolist()
     name = name_chunks(chunks)
     for i, chunk in enumerate(chunks):
