@@ -145,15 +145,8 @@ def initialize_rag(data):
                 "name": name
             }
         )])
-
-def get_name(data):
-    chunks = [data[i : i + 1250] for i in range(0, len(data), 1200)]
-    embeddings = embedding_model.encode(chunks).tolist()
-    name = name_chunks(chunks)
-    for i, chunk in enumerate(chunks):
-        index.upsert(vectors=[(f" {name} #{i}", embeddings[i], {"text": chunk})])
-        #this for admin printing
     return name, i+1
+
 # Streamlit UI: Upsert Data
 rag_data = None
 psw = st.text_input("Enter Admin Password:", type="password")
@@ -161,7 +154,8 @@ upsert = st.button("Upsert Data");new_file = st.file_uploader("Change upsert pat
 
 if new_file and upsert:
     dummy_data = check_file_type(new_file)
-    name, records = get_name(dummy_data)
+    initialize_rag(dummy_data)
+    name, records = initialize_rag(dummy_data)
     if psw == ADMIN_PSW and records > 1:
         st.success(f"Upsert successful!You upserted {records} record of, {name} this name was AI generated btw, to your pinecone vector db")
     elif psw == ADMIN_PSW:
