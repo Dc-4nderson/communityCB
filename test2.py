@@ -102,7 +102,7 @@ def split_into_semantic_chunks(text, max_tokens=1300, overlap=200):
         token_count = len(tokens)
 
         # Check if adding this paragraph exceeds the max token limit
-        if sum(len(tokenizer(p, return_tensors='pt')['input_ids'][0]) for p in current_chunk) + token_count > max_tokens:
+        if sum(len(embedding_model(p, return_tensors='pt')['input_ids'][0]) for p in current_chunk) + token_count > max_tokens:
             chunks.append("\n\n".join(current_chunk))
             current_chunk = [paragraph]
         else:
@@ -136,7 +136,7 @@ def initialize_rag(data):
     
     # Upsert chunks into Pinecone with order and name metadata
     for i, chunk in enumerate(chunks):
-        index.upsert(vectors=[(f"{name} #{i}",embeddings[i], {"text": chunk})])
+        index.upsert(vectors=[(f" {name} #{i}",embeddings[i], {"text": chunk})])
     return name, i+1
 
 # Streamlit UI: Upsert Data
